@@ -1,5 +1,5 @@
 <script>
-  import { mapState, mapMutations } from 'vuex';
+  import { mapState, mapMutations, mapActions } from 'vuex';
   
   export default{
     data() {
@@ -8,10 +8,13 @@
       }
     },
     computed: {
-      ...mapState(['username'])
+      // ...mapState(["profile/username"])
+      ...mapState({
+        username: (state) => state.profile.username
+      })
     },
     methods: {
-      ...mapMutations(['updateUsername'])
+      ...mapActions(['actualizarNombre'])
     },
   }
   
@@ -26,7 +29,7 @@
         type="text"
         placeholder="Jane Smith"
         :value="username"
-        @input="updateUsername($event.target.value)"
+        @input="actualizarNombre($event.target.value)"
       />
       <button @click="$router.push('/')">Acceder</button>
     </div>

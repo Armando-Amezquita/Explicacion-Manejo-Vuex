@@ -37,7 +37,7 @@ export default {
     // ...mapState({
 	    // username: (state) => state.username
     // })
-    ...mapState(['username']),
+    // ...mapState(['username']),
     ...mapGetters(['firstName'])
     //De las dos maneras arriba mencionadas se puede importar un estado especifico.
   }
