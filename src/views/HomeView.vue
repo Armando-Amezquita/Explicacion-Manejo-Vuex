@@ -3,6 +3,7 @@ import { RouterView, RouterLink } from 'vue-router'
 import InputSearch from '@/components/InputSearch.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import ChatItem from '@/components/ChatItem.vue'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -10,13 +11,13 @@ export default {
     RouterLink,
     InputSearch,
     ProfileCard,
-    ChatItem
+    ChatItem,
   },
   data() {
     return {
       search: '',
       profile: {
-        username: 'Diana Nerd',
+        username: '',
         status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
@@ -30,6 +31,16 @@ export default {
       ]
     }
   },
+  computed: {
+    foo(){},
+    // Asi se utiliza mapState si se necesita tener mas propiedades computadas
+    // ...mapState({
+	    // username: (state) => state.username
+    // })
+    ...mapState(['username']),
+    ...mapGetters(['firstName'])
+    //De las dos maneras arriba mencionadas se puede importar un estado especifico.
+  }
 
 }
 </script>
@@ -40,7 +51,7 @@ export default {
     <InputSearch v-model="search" />
     <ProfileCard
       :avatar="profile.avatar"
-      :username="profile.username"
+      :username="firstName"
       :status="profile.status"
     />
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
