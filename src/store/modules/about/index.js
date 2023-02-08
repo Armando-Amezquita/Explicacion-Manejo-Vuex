@@ -1,6 +1,7 @@
 import { getImages } from "@/api"
 
 export const about = {
+    namespaced: true,
     state(){
         return{
             images: []

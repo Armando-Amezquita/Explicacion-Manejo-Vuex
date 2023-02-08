@@ -18,16 +18,10 @@ export default {
       search: '',
       profile: {
         username: '',
-        status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
       channels: [
-        { id: 1, name: 'General', messages: 27 },
-        { id: 2, name: 'Emergencias', messages: null },
-        { id: 3, name: 'Anuncios', messages: 2 },
-        { id: 4, name: 'Proyecto 1', messages: 24 },
-        { id: 5, name: 'Non-work', messages: null },
-        { id: 6, name: 'Atención a clientes', messages: 120 }
+        
       ]
     }
   },
@@ -38,7 +32,9 @@ export default {
 	    // username: (state) => state.username
     // })
     // ...mapState(['username']),
-    ...mapGetters(['firstName'])
+    ...mapGetters('profile', ['firstName']),
+    ...mapGetters('channels', ['getChannels']),
+    ...mapState(['status'])
     //De las dos maneras arriba mencionadas se puede importar un estado especifico.
   }
 
@@ -52,12 +48,12 @@ export default {
     <ProfileCard
       :avatar="profile.avatar"
       :username="firstName"
-      :status="profile.status"
+      :status="status"
     />
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
     <div class="channels">
       <ChatItem
-        v-for="channel in channels"
+        v-for="channel in getChannels(search)"
         :key="channel.id"
         :id="channel.id"
         :name="channel.name"

@@ -9,12 +9,13 @@
     },
     computed: {
       // ...mapState(["profile/username"])
-      ...mapState({
-        username: (state) => state.profile.username
-      })
+      ...mapState('profile', ["username"]),
+      // ...mapState({
+      //   username: (state) => state.profile.username
+      // })
     },
     methods: {
-      ...mapActions(['actualizarNombre'])
+      ...mapActions('profile', ['actualizarNombre'])
     },
   }
   

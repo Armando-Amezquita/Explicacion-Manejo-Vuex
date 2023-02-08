@@ -6,13 +6,14 @@
       this.cargarImagenes()
     },
     methods: {
-      ...mapActions(['cargarImagenes'])
+      ...mapActions('about', ['cargarImagenes'])
     },
     computed: {
       // ...mapState(['images'])
-      ...mapState({
-        images: (state) => state.about.images
-      })
+      ...mapState('about', ['images'])
+      // ...mapState({
+      //   images: (state) => state.about.images
+      // })
     },
   }
 

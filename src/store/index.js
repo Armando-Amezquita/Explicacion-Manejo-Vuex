@@ -1,9 +1,20 @@
 import { createStore } from 'vuex'
-import { getImages } from '../api'
 import { profile } from './modules/user'
 import { about } from './modules/about'
+import { channels } from './modules/channels'
+import { messages } from './modules/messages'
 
 const store = createStore({
+    state(){
+        return {
+            status: null
+        }
+    },
+    mutations: {
+        setStatus(state, payload){
+            state.status = payload;
+        }
+    },
     // State => Retorna todas las variables de estado que se utilicen de forma global.
     // Donde se vaya a utilice alguna variable del store, no es necesario importarlo, ya que vue lo hace en el main. 
     // Solo se utilizaria ===> $store.state.username => en el componente o etiqueta. ejemplo en Home.vue en Prolife.card.
@@ -57,7 +68,9 @@ const store = createStore({
 
     modules: {
         profile,
-        about
+        about,
+        channels,
+        messages
     }
 })
 
